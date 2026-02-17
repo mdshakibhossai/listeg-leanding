@@ -1,36 +1,32 @@
-// src/components/layout/public-header.tsx
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { 
-  ChevronDown, Menu, X, Users, Zap, Mail, Target, Phone,
-  Building2, BookOpen, BarChart, Star, Gift 
+  ChevronDown, Menu, X, Users, Zap, Mail, Globe, BarChart, 
+  Award, TrendingUp, Star, BookOpen, Target, Phone, Sparkles,
+  Shield, CheckCircle, ArrowRight, ExternalLink, Briefcase,
+  Building2, DollarSign, Filter, Download, Gift, MessageCircle,
+  PieChart, Rocket, Share2, Settings, HelpCircle, FileText,
+  Database, Activity, Map, Code, Layers, Clock, CreditCard,
+  Headphones, Shield as ShieldIcon, Lock, Eye, Radio,
+  Network, UserCheck, Briefcase as BriefcaseIcon, TrendingUp as TrendingUpIcon
 } from 'lucide-react';
+
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
-  const navData = {
-    products: [
-      { title: 'Leads', desc: 'Instant access to 626M+ triple-verified leads ready for cold outreach.', icon: <Users className="text-blue-500" /> },
-      { title: 'Intent Data', desc: 'Reach buyers searching for your solution with 21B+ real-time intent signals.', icon: <Zap className="text-blue-500" /> },
-      { title: 'Email Engine', desc: 'Send emails that land and convert, using warm inboxes and smart automation.', icon: <Mail className="text-blue-500" /> },
-      { title: 'Cold Email Setup', desc: 'Quickly launch your cold email campaigns with our easy setup guide.', icon: <Target className="text-blue-500" /> },
-      { title: 'Phone Numbers', desc: 'Find mobile numbers for qualified prospects for your sales team.', icon: <Phone className="text-blue-500" /> },
-    ],
-    company: [
-      { title: 'Careers', desc: 'Join a growing team that\'s revolutionizing the way businesses generate leads.', icon: <Building2 className="text-blue-500" /> },
-      { title: 'Team', desc: 'Meet the innovators behind LisTeg, passionate about helping you grow.', icon: <Users className="text-blue-500" /> },
-    ],
-    resources: [
-      { title: 'Blog', desc: 'Get expert tips, strategies, and insights on cold email marketing.', icon: <BookOpen className="text-blue-500" /> },
-      { title: 'Case Studies', desc: 'See how businesses have scaled with LisTeg\'s proven approach.', icon: <BarChart className="text-blue-500" /> },
-      { title: 'Testimonials', desc: 'Read success stories from users who\'ve transformed their outreach.', icon: <Star className="text-blue-500" /> },
-      { title: 'Affiliate Program', desc: 'Earn commissions by referring new users to LisTeg.', icon: <Gift className="text-blue-500" /> },
-    ]
-  };
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Animation Variants
   const fadeInUp = {
@@ -47,134 +43,787 @@ const Header = () => {
     }
   };
 
+  // Brand Colors
+  const colors = {
+    primary: '#843cff',
+    secondary: '#37d4ff',
+    gradient: 'linear-gradient(135deg, #00a6d3 0%, #8944ff 100%)',
+    banner: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
+  };
+
+  // Platform dropdown items - 2 columns
+  const platformItems = [
+    // Column 1
+    [
+      { 
+        title: 'Lead Finder', 
+        desc: 'Find accurate B2B contacts with AI-powered search', 
+        icon: <Users size={20} className="text-[#843cff]" />, 
+        href: '/lead-finder',
+        badge: 'New'
+      },
+      { 
+        title: 'Email Finder', 
+        desc: 'Verified email addresses with 98% accuracy', 
+        icon: <Mail size={20} className="text-[#843cff]" />, 
+        href: '/email-finder',
+        badge: 'Popular'
+      },
+      { 
+        title: 'Phone Finder', 
+        desc: 'Direct dials & mobile numbers for prospects', 
+        icon: <Phone size={20} className="text-[#843cff]" />, 
+        href: '/phone-finder' 
+      },
+      { 
+        title: 'Intent Data', 
+        desc: 'Reach buyers searching for your solution', 
+        icon: <Zap size={20} className="text-[#843cff]" />, 
+        href: '/intent-data' 
+      },
+    ],
+    // Column 2
+    [
+      { 
+        title: 'Data Enrichment', 
+        desc: 'Enhance your existing lists in real-time', 
+        icon: <Rocket size={20} className="text-[#843cff]" />, 
+        href: '/data-enrichment' 
+      },
+      { 
+        title: 'Email Engine', 
+        desc: 'Send emails that land and convert', 
+        icon: <Mail size={20} className="text-[#843cff]" />, 
+        href: '/email-engine' 
+      },
+      { 
+        title: 'Cold Email Setup', 
+        desc: 'Quickly launch your cold email campaigns', 
+        icon: <Target size={20} className="text-[#843cff]" />, 
+        href: '/cold-email-setup' 
+      },
+      { 
+        title: 'API Access', 
+        desc: 'Integrate our data into your workflows', 
+        icon: <Code size={20} className="text-[#843cff]" />, 
+        href: '/api' 
+      },
+    ]
+  ];
+
+  // Our Data dropdown items - 2 columns
+  const ourDataItems = [
+    // Column 1
+    [
+      { 
+        title: 'Database Size', 
+        desc: '280M+ verified B2B contacts', 
+        icon: <Database size={20} className="text-[#843cff]" />, 
+        href: '/database',
+        badge: '280M+'
+      },
+      { 
+        title: 'Data Quality', 
+        desc: '99% accuracy with real-time verification', 
+        icon: <Award size={20} className="text-[#843cff]" />, 
+        href: '/quality',
+        badge: '99%'
+      },
+      { 
+        title: 'Coverage', 
+        desc: 'Global reach across 200+ countries', 
+        icon: <Map size={20} className="text-[#843cff]" />, 
+        href: '/coverage' 
+      },
+      { 
+        title: 'Technologies', 
+        desc: 'Filter by tech stack & tools used', 
+        icon: <Layers size={20} className="text-[#843cff]" />, 
+        href: '/technologies' 
+      },
+    ],
+    // Column 2
+    [
+      { 
+        title: 'Company Data', 
+        desc: 'Firmographics & company insights', 
+        icon: <Building2 size={20} className="text-[#843cff]" />, 
+        href: '/companies' 
+      },
+      { 
+        title: 'Intent Signals', 
+        desc: 'Buyers actively researching', 
+        icon: <Activity size={20} className="text-[#843cff]" />, 
+        href: '/intent' 
+      },
+      { 
+        title: 'Data Freshness', 
+        desc: 'Real-time updates & verification', 
+        icon: <Clock size={20} className="text-[#843cff]" />, 
+        href: '/freshness' 
+      },
+      { 
+        title: 'Export Options', 
+        desc: 'CSV, API, and CRM integrations', 
+        icon: <Download size={20} className="text-[#843cff]" />, 
+        href: '/export' 
+      },
+    ]
+  ];
+
+  // Why LisTeg dropdown items - 2 columns
+  const whyItems = [
+    // Column 1
+    [
+      { 
+        title: 'Case Studies', 
+        desc: 'See how companies win with our data', 
+        icon: <BookOpen size={20} className="text-[#843cff]" />, 
+        href: '/case-studies' 
+      },
+      { 
+        title: 'Testimonials', 
+        desc: 'What our 40,000+ users say', 
+        icon: <Star size={20} className="text-[#843cff]" />, 
+        href: '/testimonials' 
+      },
+      { 
+        title: 'ROI Calculator', 
+        desc: 'Calculate your potential returns', 
+        icon: <PieChart size={20} className="text-[#843cff]" />, 
+        href: '/roi-calculator' 
+      },
+      { 
+        title: 'Integrations', 
+        desc: 'Connect with your favorite tools', 
+        icon: <Share2 size={20} className="text-[#843cff]" />, 
+        href: '/integrations' 
+      },
+    ],
+    // Column 2
+    [
+      { 
+        title: 'Reviews', 
+        desc: 'See what G2 & Capterra say', 
+        icon: <MessageCircle size={20} className="text-[#843cff]" />, 
+        href: '/reviews' 
+      },
+      { 
+        title: 'Comparison', 
+        desc: 'How we compare to competitors', 
+        icon: <BarChart size={20} className="text-[#843cff]" />, 
+        href: '/comparison' 
+      },
+      { 
+        title: 'Success Stories', 
+        desc: 'Real results from real customers', 
+        icon: <Award size={20} className="text-[#843cff]" />, 
+        href: '/success-stories' 
+      },
+      { 
+        title: 'Trust Center', 
+        desc: 'Security & compliance information', 
+        icon: <Shield size={20} className="text-[#843cff]" />, 
+        href: '/trust' 
+      },
+    ]
+  ];
+
+  // Resources dropdown items - 2 columns
+  const resourcesItems = [
+    // Column 1
+    [
+      { 
+        title: 'Blog', 
+        desc: 'Latest insights on lead generation', 
+        icon: <BookOpen size={20} className="text-[#843cff]" />, 
+        href: '/blog' 
+      },
+      { 
+        title: 'Guides', 
+        desc: 'In-depth resources for sales teams', 
+        icon: <Target size={20} className="text-[#843cff]" />, 
+        href: '/guides' 
+      },
+      { 
+        title: 'Help Center', 
+        desc: 'Get support and documentation', 
+        icon: <HelpCircle size={20} className="text-[#843cff]" />, 
+        href: '/help' 
+      },
+      { 
+        title: 'Chrome Extension', 
+        desc: 'Find leads anywhere on the web', 
+        icon: <Download size={20} className="text-[#843cff]" />, 
+        href: '/chrome-extension',
+        badge: 'Free'
+      },
+    ],
+    // Column 2
+    [
+      { 
+        title: 'Affiliate Program', 
+        desc: 'Earn commissions by referring users', 
+        icon: <Gift size={20} className="text-[#843cff]" />, 
+        href: '/affiliate' 
+      },
+      { 
+        title: 'Documentation', 
+        desc: 'API docs & developer resources', 
+        icon: <FileText size={20} className="text-[#843cff]" />, 
+        href: '/docs' 
+      },
+      { 
+        title: 'Webinars', 
+        desc: 'Live and on-demand training sessions', 
+        icon: <Radio size={20} className="text-[#843cff]" />, 
+        href: '/webinars' 
+      },
+      { 
+        title: 'Community', 
+        desc: 'Join our community of sales pros', 
+        icon: <Users size={20} className="text-[#843cff]" />, 
+        href: '/community' 
+      },
+    ]
+  ];
+
   return (
     <>
-      {/* NAVIGATION */}
-      <motion.nav 
+      {/* TOP ANNOUNCEMENT BANNER */}
+      <motion.div 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ type: "spring", stiffness: 50 }}
-        className="fixed top-0 left-0 right-0 z-[100] bg-white"
+        className="fixed top-0 left-0 right-0 z-[110] h-10 flex items-center justify-center bg-gradient-to-r from-[#667eea] to-[#764ba2] text-white"
       >
-        <div className="relative flex items-center justify-between px-6 py-4 mx-auto max-w-7xl">
-          
-          {/* LEFT SIDE - LOGO */}
-          <motion.div 
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-2 text-2xl font-bold cursor-pointer"
+        <div className="flex items-center gap-3 text-sm font-medium">
+          <span className="bg-white/20 px-2 py-0.5 rounded text-xs uppercase tracking-wide">🥳 Offer</span>
+          <span>LisTeg Launch offer: 20% LIFETIME before March.</span>
+          <Link 
+            href="/pricing" 
+            className="flex items-center gap-1 text-white/90 hover:text-white underline underline-offset-2 transition-all"
           >
-            <motion.div 
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.5 }}
-              className="bg-purple-600 p-1.5 rounded-lg"
-            >
-              <div className="w-5 h-5 border-2 border-white rounded-sm" />
-            </motion.div>
-            <span className="tracking-tight text-black">LisTeg</span>
-          </motion.div>
+            See Plans <ArrowRight size={14} />
+          </Link>
+        </div>
+      </motion.div>
 
-          {/* CENTER MENU */}
-          <div className="absolute left-1/2 -translate-x-1/2 hidden lg:flex items-center gap-8 text-lg font-semibold text-black">
-            {['Products', 'Resources', 'Company'].map((item) => (
-              <div
-                key={item}
-                className="relative group"
-                onMouseEnter={() => setActiveDropdown(item.toLowerCase())}
+      {/* MAIN NAVIGATION */}
+      <header 
+        className={`fixed left-0 right-0 z-[100] transition-all duration-300`}
+        style={{ top: '40px' }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <motion.nav 
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.1 }}
+            className={`
+              flex items-center justify-between px-4 sm:px-6 
+              bg-white/90 backdrop-blur-lg 
+              border border-slate-200/50 
+              rounded-2xl shadow-lg 
+              transition-all duration-300
+              ${isScrolled ? 'py-2 shadow-xl' : 'py-3'}
+            `}
+          >
+            {/* LOGO */}
+            <Link href="/" className="flex items-center gap-2.5 group">
+              <motion.div 
+                whileHover={{ rotate: 10, scale: 1.05 }}
+                className="w-9 h-9 rounded-xl flex items-center justify-center text-white shadow-md"
+                style={{ background: colors.gradient }}
+              >
+                <div className="w-4 h-4 border-2 border-white rounded-sm" />
+              </motion.div>
+              <span className="text-xl font-bold tracking-tight text-slate-900">
+                LisTeg
+              </span>
+            </Link>
+
+            {/* CENTER LINKS - Desktop */}
+            <div className="hidden lg:flex items-center gap-1">
+              {/* Platform Dropdown - 2 Columns */}
+              <div 
+                className="relative"
+                onMouseEnter={() => setActiveDropdown('platform')}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <motion.button 
-                  whileHover={{ y: -2 }}
-                  className="flex items-center gap-1 hover:text-purple-600 transition"
+                <button 
+                  className={`
+                    flex items-center gap-1.5 px-4 py-2 text-sm font-medium 
+                    transition-all rounded-full
+                    ${activeDropdown === 'platform' 
+                      ? 'text-[#843cff] bg-purple-50' 
+                      : 'text-slate-700 hover:text-[#843cff] hover:bg-purple-50/50'
+                    }
+                  `}
                 >
-                  {item}
-                  <motion.div
-                    animate={{ rotate: activeDropdown === item.toLowerCase() ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <ChevronDown size={16} />
-                  </motion.div>
-                </motion.button>
+                  Platform
+                  <ChevronDown 
+                    size={16} 
+                    className={`transition-transform duration-200 ${
+                      activeDropdown === 'platform' ? 'rotate-180' : ''
+                    }`} 
+                  />
+                </button>
 
-                {/* DROPDOWN */}
                 <AnimatePresence>
-                  {activeDropdown === item.toLowerCase() && (
-                    <motion.div 
+                  {activeDropdown === 'platform' && (
+                    <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 pt-3 w-[500px]"
+                      transition={{ duration: 0.15 }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 pt-5 w-[600px]"
                     >
-                      <div className="bg-white rounded-2xl shadow-2xl border border-slate-100 p-4 grid grid-cols-2 gap-2">
-                        {navData[item.toLowerCase() as keyof typeof navData]?.map(
-                          (sub, idx) => (
-                            <motion.div
-                              key={idx}
-                              initial={{ opacity: 0, x: -20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: idx * 0.05 }}
-                              whileHover={{ x: 5, backgroundColor: "#f8fafc" }}
-                              className="flex gap-3 p-3 rounded-xl transition cursor-pointer"
-                            >
-                              <div className="w-9 h-9 bg-slate-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                {React.cloneElement(sub.icon as React.ReactElement)}
-                              </div>
-                              <div>
-                                <div className="font-bold text-slate-900 text-sm">
-                                  {sub.title}
+                      <div className="bg-white rounded-2xl border border-slate-100 shadow-2xl overflow-hidden">
+                        <div className="px-6 py-3 bg-gradient-to-r from-[#667eea]/5 to-[#764ba2]/5 border-b border-slate-100">
+                          <span className="text-xs font-semibold text-[#843cff] uppercase tracking-wider">
+                            Platform Features
+                          </span>
+                        </div>
+                        <div className="p-4 grid grid-cols-2 gap-3">
+                          <div className="space-y-1">
+                            {platformItems[0].map((item, idx) => (
+                              <Link 
+                                key={idx} 
+                                href={item.href} 
+                                className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-all group"
+                              >
+                                <div className="mt-0.5 text-[#843cff] bg-purple-50 p-2 rounded-lg group-hover:scale-110 transition-transform">
+                                  {item.icon}
                                 </div>
-                                <div className="text-xs text-slate-500 mt-0.5 line-clamp-2">
-                                  {sub.desc}
+                                <div className="flex-1">
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-sm font-semibold text-slate-900">
+                                      {item.title}
+                                    </span>
+                                    {item.badge && (
+                                      <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#37d4ff] text-white">
+                                        {item.badge}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <p className="text-xs text-slate-500 mt-0.5 line-clamp-2">
+                                    {item.desc}
+                                  </p>
                                 </div>
-                              </div>
-                            </motion.div>
-                          )
-                        )}
+                              </Link>
+                            ))}
+                          </div>
+                          <div className="space-y-1">
+                            {platformItems[1].map((item, idx) => (
+                              <Link 
+                                key={idx} 
+                                href={item.href} 
+                                className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-all group"
+                              >
+                                <div className="mt-0.5 text-[#843cff] bg-purple-50 p-2 rounded-lg group-hover:scale-110 transition-transform">
+                                  {item.icon}
+                                </div>
+                                <div className="flex-1">
+                                  <span className="text-sm font-semibold text-slate-900">
+                                    {item.title}
+                                  </span>
+                                  <p className="text-xs text-slate-500 mt-0.5 line-clamp-2">
+                                    {item.desc}
+                                  </p>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="p-3 bg-slate-50 border-t border-slate-100">
+                          <Link 
+                            href="/platform"
+                            className="flex items-center justify-between text-xs font-medium text-[#843cff] hover:gap-2 transition-all"
+                          >
+                            <span>View all platform features</span>
+                            <ArrowRight size={14} />
+                          </Link>
+                        </div>
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
-            ))}
 
-            <motion.a 
-              href="#" 
-              whileHover={{ y: -2 }}
-              className="hover:text-purple-600 transition"
-            >
-              Pricing
-            </motion.a>
-          </div>
+              {/* Our Data Dropdown - 2 Columns */}
+              <div 
+                className="relative"
+                onMouseEnter={() => setActiveDropdown('ourData')}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <button 
+                  className={`
+                    flex items-center gap-1.5 px-4 py-2 text-sm font-medium 
+                    transition-all rounded-full
+                    ${activeDropdown === 'ourData' 
+                      ? 'text-[#843cff] bg-purple-50' 
+                      : 'text-slate-700 hover:text-[#843cff] hover:bg-purple-50/50'
+                    }
+                  `}
+                >
+                  Our data
+                  <ChevronDown 
+                    size={16} 
+                    className={`transition-transform duration-200 ${
+                      activeDropdown === 'ourData' ? 'rotate-180' : ''
+                    }`} 
+                  />
+                </button>
 
-          {/* RIGHT SIDE */}
-          <div className="flex items-center gap-4">
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              className="hidden sm:block text-base font-semibold text-black hover:text-purple-600 transition"
-            >
-              Log In
-            </motion.button>
+                <AnimatePresence>
+                  {activeDropdown === 'ourData' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 pt-5 w-[600px]"
+                    >
+                      <div className="bg-white rounded-2xl border border-slate-100 shadow-2xl overflow-hidden">
+                        <div className="px-6 py-3 bg-gradient-to-r from-[#667eea]/5 to-[#764ba2]/5 border-b border-slate-100">
+                          <span className="text-xs font-semibold text-[#843cff] uppercase tracking-wider">
+                            Our Data
+                          </span>
+                        </div>
+                        <div className="p-4 grid grid-cols-2 gap-3">
+                          <div className="space-y-1">
+                            {ourDataItems[0].map((item, idx) => (
+                              <Link 
+                                key={idx} 
+                                href={item.href} 
+                                className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-all group"
+                              >
+                                <div className="mt-0.5 text-[#843cff] bg-purple-50 p-2 rounded-lg group-hover:scale-110 transition-transform">
+                                  {item.icon}
+                                </div>
+                                <div className="flex-1">
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-sm font-semibold text-slate-900">
+                                      {item.title}
+                                    </span>
+                                    {item.badge && (
+                                      <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#37d4ff] text-white">
+                                        {item.badge}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <p className="text-xs text-slate-500 mt-0.5 line-clamp-2">
+                                    {item.desc}
+                                  </p>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                          <div className="space-y-1">
+                            {ourDataItems[1].map((item, idx) => (
+                              <Link 
+                                key={idx} 
+                                href={item.href} 
+                                className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-all group"
+                              >
+                                <div className="mt-0.5 text-[#843cff] bg-purple-50 p-2 rounded-lg group-hover:scale-110 transition-transform">
+                                  {item.icon}
+                                </div>
+                                <div className="flex-1">
+                                  <span className="text-sm font-semibold text-slate-900">
+                                    {item.title}
+                                  </span>
+                                  <p className="text-xs text-slate-500 mt-0.5 line-clamp-2">
+                                    {item.desc}
+                                  </p>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="p-3 bg-slate-50 border-t border-slate-100">
+                          <Link 
+                            href="/our-data"
+                            className="flex items-center justify-between text-xs font-medium text-[#843cff] hover:gap-2 transition-all"
+                          >
+                            <span>Explore all data features</span>
+                            <ArrowRight size={14} />
+                          </Link>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
 
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2.5 rounded-full text-sm font-bold transition shadow-lg shadow-purple-200 whitespace-nowrap"
-            >
-              Get 100 Free Leads
-            </motion.button>
+              {/* Why LisTeg Dropdown - 2 Columns */}
+              <div 
+                className="relative"
+                onMouseEnter={() => setActiveDropdown('why')}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <button 
+                  className={`
+                    flex items-center gap-1.5 px-4 py-2 text-sm font-medium 
+                    transition-all rounded-full
+                    ${activeDropdown === 'why' 
+                      ? 'text-[#843cff] bg-purple-50' 
+                      : 'text-slate-700 hover:text-[#843cff] hover:bg-purple-50/50'
+                    }
+                  `}
+                >
+                  Why LisTeg
+                  <ChevronDown 
+                    size={16} 
+                    className={`transition-transform duration-200 ${
+                      activeDropdown === 'why' ? 'rotate-180' : ''
+                    }`} 
+                  />
+                </button>
 
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2"
-            >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </motion.button>
-          </div>
+                <AnimatePresence>
+                  {activeDropdown === 'why' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 pt-5 w-[600px]"
+                    >
+                      <div className="bg-white rounded-2xl border border-slate-100 shadow-2xl overflow-hidden">
+                        <div className="px-6 py-3 bg-gradient-to-r from-[#667eea]/5 to-[#764ba2]/5 border-b border-slate-100">
+                          <span className="text-xs font-semibold text-[#843cff] uppercase tracking-wider">
+                            Why Choose LisTeg
+                          </span>
+                        </div>
+                        <div className="p-4 grid grid-cols-2 gap-3">
+                          <div className="space-y-1">
+                            {whyItems[0].map((item, idx) => (
+                              <Link 
+                                key={idx} 
+                                href={item.href} 
+                                className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-all group"
+                              >
+                                <div className="mt-0.5 text-[#843cff] bg-purple-50 p-2 rounded-lg group-hover:scale-110 transition-transform">
+                                  {item.icon}
+                                </div>
+                                <div className="flex-1">
+                                  <span className="text-sm font-semibold text-slate-900">
+                                    {item.title}
+                                  </span>
+                                  <p className="text-xs text-slate-500 mt-0.5 line-clamp-2">
+                                    {item.desc}
+                                  </p>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                          <div className="space-y-1">
+                            {whyItems[1].map((item, idx) => (
+                              <Link 
+                                key={idx} 
+                                href={item.href} 
+                                className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-all group"
+                              >
+                                <div className="mt-0.5 text-[#843cff] bg-purple-50 p-2 rounded-lg group-hover:scale-110 transition-transform">
+                                  {item.icon}
+                                </div>
+                                <div className="flex-1">
+                                  <span className="text-sm font-semibold text-slate-900">
+                                    {item.title}
+                                  </span>
+                                  <p className="text-xs text-slate-500 mt-0.5 line-clamp-2">
+                                    {item.desc}
+                                  </p>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="p-3 bg-slate-50 border-t border-slate-100">
+                          <Link 
+                            href="/why-listeg"
+                            className="flex items-center justify-between text-xs font-medium text-[#843cff] hover:gap-2 transition-all"
+                          >
+                            <span>See why customers choose us</span>
+                            <ArrowRight size={14} />
+                          </Link>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Resources Dropdown - 2 Columns */}
+              <div 
+                className="relative"
+                onMouseEnter={() => setActiveDropdown('resources')}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <button 
+                  className={`
+                    flex items-center gap-1.5 px-4 py-2 text-sm font-medium 
+                    transition-all rounded-full
+                    ${activeDropdown === 'resources' 
+                      ? 'text-[#843cff] bg-purple-50' 
+                      : 'text-slate-700 hover:text-[#843cff] hover:bg-purple-50/50'
+                    }
+                  `}
+                >
+                  Resources
+                  <ChevronDown 
+                    size={16} 
+                    className={`transition-transform duration-200 ${
+                      activeDropdown === 'resources' ? 'rotate-180' : ''
+                    }`} 
+                  />
+                </button>
+
+                <AnimatePresence>
+                  {activeDropdown === 'resources' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 pt-5 w-[600px]"
+                    >
+                      <div className="bg-white rounded-2xl border border-slate-100 shadow-2xl overflow-hidden">
+                        <div className="px-6 py-3 bg-gradient-to-r from-[#667eea]/5 to-[#764ba2]/5 border-b border-slate-100">
+                          <span className="text-xs font-semibold text-[#843cff] uppercase tracking-wider">
+                            Resources
+                          </span>
+                        </div>
+                        <div className="p-4 grid grid-cols-2 gap-3">
+                          <div className="space-y-1">
+                            {resourcesItems[0].map((item, idx) => (
+                              <Link 
+                                key={idx} 
+                                href={item.href} 
+                                className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-all group"
+                              >
+                                <div className="mt-0.5 text-[#843cff] bg-purple-50 p-2 rounded-lg group-hover:scale-110 transition-transform">
+                                  {item.icon}
+                                </div>
+                                <div className="flex-1">
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-sm font-semibold text-slate-900">
+                                      {item.title}
+                                    </span>
+                                    {item.badge && (
+                                      <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#37d4ff] text-white">
+                                        {item.badge}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <p className="text-xs text-slate-500 mt-0.5 line-clamp-2">
+                                    {item.desc}
+                                  </p>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                          <div className="space-y-1">
+                            {resourcesItems[1].map((item, idx) => (
+                              <Link 
+                                key={idx} 
+                                href={item.href} 
+                                className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-all group"
+                              >
+                                <div className="mt-0.5 text-[#843cff] bg-purple-50 p-2 rounded-lg group-hover:scale-110 transition-transform">
+                                  {item.icon}
+                                </div>
+                                <div className="flex-1">
+                                  <span className="text-sm font-semibold text-slate-900">
+                                    {item.title}
+                                  </span>
+                                  <p className="text-xs text-slate-500 mt-0.5 line-clamp-2">
+                                    {item.desc}
+                                  </p>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="p-3 bg-slate-50 border-t border-slate-100">
+                          <Link 
+                            href="/resources"
+                            className="flex items-center justify-between text-xs font-medium text-[#843cff] hover:gap-2 transition-all"
+                          >
+                            <span>Explore all resources</span>
+                            <ArrowRight size={14} />
+                          </Link>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Pricing - No Dropdown */}
+              <Link 
+                href="/pricing" 
+                className="px-4 py-2 text-sm font-medium text-slate-700 hover:text-[#843cff] rounded-full hover:bg-purple-50/50 transition-all"
+              >
+                Pricing
+              </Link>
+            </div>
+
+            {/* RIGHT SIDE - Buttons */}
+            <div className="flex items-center gap-3">
+              <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 rounded-full">
+                <Users size={14} className="text-[#843cff]" />
+                <span className="text-xs font-medium text-slate-700">40k+</span>
+              </div>
+
+              <Link 
+                href="/login" 
+                className="hidden sm:block text-sm font-medium text-slate-600 hover:text-[#843cff] px-3 py-2 transition-colors"
+              >
+                Log in
+              </Link>
+
+              <Link href="/get-started">
+                <motion.button 
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="relative overflow-hidden group px-5 py-2.5 rounded-xl text-sm font-bold text-white shadow-md hover:shadow-lg transition-all"
+                  style={{ background: colors.gradient }}
+                >
+                  <motion.span
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute inset-0 bg-white/20"
+                  />
+                  <span className="relative z-10 flex items-center gap-2">
+                    Get Started <Sparkles size={16} />
+                  </span>
+                </motion.button>
+              </Link>
+
+              <Link href="/dashboard" className="hidden lg:block">
+                <motion.button 
+                  whileHover={{ scale: 1.02 }}
+                  className="px-4 py-2 rounded-xl text-sm font-bold border-2 transition-all"
+                  style={{ borderColor: colors.secondary, color: colors.primary }}
+                >
+                  Go to Dashboard
+                </motion.button>
+              </Link>
+
+              <button 
+                onClick={() => setIsMenuOpen(!isMenuOpen)} 
+                className="lg:hidden p-2.5 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors"
+              >
+                {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              </button>
+            </div>
+          </motion.nav>
         </div>
-      </motion.nav>
+      </header>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE MENU - Full Screen Overlay with Slide Animation */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div 
@@ -182,7 +831,8 @@ const Header = () => {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25 }}
-            className="lg:hidden fixed inset-0 z-[110] bg-white flex flex-col"
+            className="lg:hidden fixed inset-0 z-[120] bg-white flex flex-col"
+            style={{ paddingTop: 'calc(20px)' }}
           >
             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
               <motion.div 
@@ -211,63 +861,247 @@ const Header = () => {
                 variants={staggerContainer}
                 className="flex flex-col gap-2"
               >
-                {['Products', 'Resources', 'Company'].map((item) => (
-                  <motion.div 
-                    key={item} 
-                    variants={fadeInUp}
-                    className="border-b border-slate-50"
+                {/* Platform Dropdown - 2 Columns */}
+                <motion.div 
+                  variants={fadeInUp}
+                  className="border-b border-slate-50"
+                >
+                  <button 
+                    onClick={() => setActiveDropdown(activeDropdown === 'platform' ? null : 'platform')}
+                    className="w-full flex items-center justify-between py-4 text-left"
                   >
-                    <button 
-                      onClick={() => setActiveDropdown(activeDropdown === item.toLowerCase() ? null : item.toLowerCase())}
-                      className="w-full flex items-center justify-between py-4 text-left"
+                    <span className="text-lg font-bold text-slate-900">Platform</span>
+                    <motion.div
+                      animate={{ rotate: activeDropdown === 'platform' ? 180 : 0 }}
                     >
-                      <span className="text-lg font-bold text-slate-900">{item}</span>
-                      <motion.div
-                        animate={{ rotate: activeDropdown === item.toLowerCase() ? 180 : 0 }}
+                      <ChevronDown size={20} />
+                    </motion.div>
+                  </button>
+                  
+                  <AnimatePresence>
+                    {activeDropdown === 'platform' && (
+                      <motion.div 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="pb-4 overflow-hidden"
                       >
-                        <ChevronDown size={20} />
-                      </motion.div>
-                    </button>
-                    
-                    <AnimatePresence>
-                      {activeDropdown === item.toLowerCase() && (
-                        <motion.div 
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          className="pb-4 space-y-3 overflow-hidden"
-                        >
-                          {navData[item.toLowerCase() as keyof typeof navData]?.map((sub, idx) => (
-                            <motion.div 
+                        <div className="grid grid-cols-2 gap-3">
+                          {[...platformItems[0], ...platformItems[1]].map((sub, idx) => (
+                            <Link 
                               key={idx}
-                              initial={{ x: -20, opacity: 0 }}
-                              animate={{ x: 0, opacity: 1 }}
-                              transition={{ delay: idx * 0.1 }}
-                              className="bg-slate-50 p-4 rounded-2xl flex gap-4"
+                              href={sub.href}
+                              onClick={() => setIsMenuOpen(false)}
                             >
-                              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm flex-shrink-0 text-purple-600">
-                                {sub.icon}
-                              </div>
-                              <div>
-                                <div className="font-bold text-sm text-slate-900">{sub.title}</div>
-                                <div className="text-xs text-slate-500 leading-relaxed mt-1">{sub.desc}</div>
-                              </div>
-                            </motion.div>
+                              <motion.div 
+                                initial={{ x: -20, opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                transition={{ delay: idx * 0.05 }}
+                                className="bg-slate-50 p-3 rounded-xl flex flex-col gap-2"
+                              >
+                                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm text-purple-600">
+                                  {React.cloneElement(sub.icon as React.ReactElement)}
+                                </div>
+                                <div>
+                                  <div className="font-bold text-xs text-slate-900">{sub.title}</div>
+                                  <div className="text-[10px] text-slate-500 leading-relaxed mt-0.5 line-clamp-2">{sub.desc}</div>
+                                </div>
+                                {sub.badge && (
+                                  <span className="text-[8px] font-bold px-1 py-0.5 rounded-full bg-[#37d4ff] text-white w-fit">
+                                    {sub.badge}
+                                  </span>
+                                )}
+                              </motion.div>
+                            </Link>
                           ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                ))}
-                
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+
+                {/* Our Data Dropdown - 2 Columns */}
+                <motion.div 
+                  variants={fadeInUp}
+                  className="border-b border-slate-50"
+                >
+                  <button 
+                    onClick={() => setActiveDropdown(activeDropdown === 'ourData' ? null : 'ourData')}
+                    className="w-full flex items-center justify-between py-4 text-left"
+                  >
+                    <span className="text-lg font-bold text-slate-900">Our Data</span>
+                    <motion.div
+                      animate={{ rotate: activeDropdown === 'ourData' ? 180 : 0 }}
+                    >
+                      <ChevronDown size={20} />
+                    </motion.div>
+                  </button>
+                  
+                  <AnimatePresence>
+                    {activeDropdown === 'ourData' && (
+                      <motion.div 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="pb-4 overflow-hidden"
+                      >
+                        <div className="grid grid-cols-2 gap-3">
+                          {[...ourDataItems[0], ...ourDataItems[1]].map((sub, idx) => (
+                            <Link 
+                              key={idx}
+                              href={sub.href}
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              <motion.div 
+                                initial={{ x: -20, opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                transition={{ delay: idx * 0.05 }}
+                                className="bg-slate-50 p-3 rounded-xl flex flex-col gap-2"
+                              >
+                                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm text-purple-600">
+                                  {React.cloneElement(sub.icon as React.ReactElement)}
+                                </div>
+                                <div>
+                                  <div className="font-bold text-xs text-slate-900">{sub.title}</div>
+                                  <div className="text-[10px] text-slate-500 leading-relaxed mt-0.5 line-clamp-2">{sub.desc}</div>
+                                </div>
+                                {sub.badge && (
+                                  <span className="text-[8px] font-bold px-1 py-0.5 rounded-full bg-[#37d4ff] text-white w-fit">
+                                    {sub.badge}
+                                  </span>
+                                )}
+                              </motion.div>
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+
+                {/* Why LisTeg Dropdown - 2 Columns */}
+                <motion.div 
+                  variants={fadeInUp}
+                  className="border-b border-slate-50"
+                >
+                  <button 
+                    onClick={() => setActiveDropdown(activeDropdown === 'why' ? null : 'why')}
+                    className="w-full flex items-center justify-between py-4 text-left"
+                  >
+                    <span className="text-lg font-bold text-slate-900">Why LisTeg</span>
+                    <motion.div
+                      animate={{ rotate: activeDropdown === 'why' ? 180 : 0 }}
+                    >
+                      <ChevronDown size={20} />
+                    </motion.div>
+                  </button>
+                  
+                  <AnimatePresence>
+                    {activeDropdown === 'why' && (
+                      <motion.div 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="pb-4 overflow-hidden"
+                      >
+                        <div className="grid grid-cols-2 gap-3">
+                          {[...whyItems[0], ...whyItems[1]].map((sub, idx) => (
+                            <Link 
+                              key={idx}
+                              href={sub.href}
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              <motion.div 
+                                initial={{ x: -20, opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                transition={{ delay: idx * 0.05 }}
+                                className="bg-slate-50 p-3 rounded-xl flex flex-col gap-2"
+                              >
+                                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm text-purple-600">
+                                  {React.cloneElement(sub.icon as React.ReactElement)}
+                                </div>
+                                <div>
+                                  <div className="font-bold text-xs text-slate-900">{sub.title}</div>
+                                  <div className="text-[10px] text-slate-500 leading-relaxed mt-0.5 line-clamp-2">{sub.desc}</div>
+                                </div>
+                              </motion.div>
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+
+                {/* Resources Dropdown - 2 Columns */}
+                <motion.div 
+                  variants={fadeInUp}
+                  className="border-b border-slate-50"
+                >
+                  <button 
+                    onClick={() => setActiveDropdown(activeDropdown === 'resources' ? null : 'resources')}
+                    className="w-full flex items-center justify-between py-4 text-left"
+                  >
+                    <span className="text-lg font-bold text-slate-900">Resources</span>
+                    <motion.div
+                      animate={{ rotate: activeDropdown === 'resources' ? 180 : 0 }}
+                    >
+                      <ChevronDown size={20} />
+                    </motion.div>
+                  </button>
+                  
+                  <AnimatePresence>
+                    {activeDropdown === 'resources' && (
+                      <motion.div 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="pb-4 overflow-hidden"
+                      >
+                        <div className="grid grid-cols-2 gap-3">
+                          {[...resourcesItems[0], ...resourcesItems[1]].map((sub, idx) => (
+                            <Link 
+                              key={idx}
+                              href={sub.href}
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              <motion.div 
+                                initial={{ x: -20, opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                transition={{ delay: idx * 0.05 }}
+                                className="bg-slate-50 p-3 rounded-xl flex flex-col gap-2"
+                              >
+                                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm text-purple-600">
+                                  {React.cloneElement(sub.icon as React.ReactElement)}
+                                </div>
+                                <div>
+                                  <div className="font-bold text-xs text-slate-900">{sub.title}</div>
+                                  <div className="text-[10px] text-slate-500 leading-relaxed mt-0.5 line-clamp-2">{sub.desc}</div>
+                                </div>
+                                {sub.badge && (
+                                  <span className="text-[8px] font-bold px-1 py-0.5 rounded-full bg-[#37d4ff] text-white w-fit">
+                                    {sub.badge}
+                                  </span>
+                                )}
+                              </motion.div>
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+
+                {/* Pricing Link */}
                 <motion.a 
                   variants={fadeInUp}
-                  href="#" 
-                  className="text-lg font-bold text-slate-900 py-4 border-b border-slate-50"
+                  href="/pricing" 
+                  className="text-lg font-bold text-slate-900 py-4 border-b border-slate-50 block"
                 >
                   Pricing
                 </motion.a>
                 
+                {/* Log In Button */}
                 <motion.button 
                   variants={fadeInUp}
                   className="text-left text-lg font-bold text-slate-900 py-4 border-b border-slate-50"
@@ -275,16 +1109,26 @@ const Header = () => {
                   Log In
                 </motion.button>
                 
+                {/* CTA Button */}
                 <motion.div 
                   variants={fadeInUp}
                   className="mt-10"
                 >
                   <motion.button 
                     whileTap={{ scale: 0.95 }}
-                    className="w-full bg-purple-600 text-white py-4 rounded-full font-bold shadow-lg"
+                    className="w-full bg-gradient-to-r from-[#00a6d3] to-[#8944ff] text-white py-4 rounded-full font-bold shadow-lg"
                   >
                     Get 100 Free Leads
                   </motion.button>
+                </motion.div>
+
+                {/* User Count Badge - Mobile */}
+                <motion.div 
+                  variants={fadeInUp}
+                  className="mt-4 flex items-center justify-center gap-2 text-sm text-slate-600"
+                >
+                  <Users size={16} className="text-[#843cff]" />
+                  <span>Join 40,000+ users trusting LisTeg</span>
                 </motion.div>
               </motion.div>
             </div>
