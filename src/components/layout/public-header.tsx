@@ -56,10 +56,10 @@ const Header = () => {
     // Column 1
     [
       { 
-        title: 'Lead Finder', 
-        desc: 'Find accurate B2B contacts with AI-powered search', 
+        title: 'Leads', 
+        desc: 'Data enrichment for B2B leads', 
         icon: <Users size={20} className="text-[#843cff]" />, 
-        href: '/lead-finder',
+        href: '/leads',
         badge: 'New'
       },
       { 
@@ -88,7 +88,7 @@ const Header = () => {
         title: 'Data Enrichment', 
         desc: 'Enhance your existing lists in real-time', 
         icon: <Rocket size={20} className="text-[#843cff]" />, 
-        href: '/data-enrichment' 
+        href: '/data-enrichments' 
       },
       { 
         title: 'Email Engine', 
@@ -104,70 +104,40 @@ const Header = () => {
       },
       { 
         title: 'API Access', 
-        desc: 'Integrate our data into your workflows', 
+        desc: 'Integrate Company into your workflows', 
         icon: <Code size={20} className="text-[#843cff]" />, 
         href: '/api' 
       },
     ]
   ];
 
-  // Our Data dropdown items - 2 columns
+  // Company dropdown items - 2 columns
   const ourDataItems = [
     // Column 1
     [
       { 
-        title: 'Database Size', 
-        desc: '280M+ verified B2B contacts', 
+        title: 'About Us', 
+        desc: 'About Instantly and our mission', 
         icon: <Database size={20} className="text-[#843cff]" />, 
-        href: '/database',
+        href: '/about-us',
         badge: '280M+'
       },
       { 
-        title: 'Data Quality', 
-        desc: '99% accuracy with real-time verification', 
+        title: 'Team', 
+        desc: 'The team behind Instantly', 
         icon: <Award size={20} className="text-[#843cff]" />, 
-        href: '/quality',
+        href: '/team',
         badge: '99%'
-      },
-      { 
-        title: 'Coverage', 
-        desc: 'Global reach across 200+ countries', 
-        icon: <Map size={20} className="text-[#843cff]" />, 
-        href: '/coverage' 
-      },
-      { 
-        title: 'Technologies', 
-        desc: 'Filter by tech stack & tools used', 
-        icon: <Layers size={20} className="text-[#843cff]" />, 
-        href: '/technologies' 
-      },
+      }
     ],
     // Column 2
     [
       { 
-        title: 'Company Data', 
-        desc: 'Firmographics & company insights', 
+        title: 'Reviews', 
+        desc: 'What our 40,000+ users say', 
         icon: <Building2 size={20} className="text-[#843cff]" />, 
-        href: '/companies' 
-      },
-      { 
-        title: 'Intent Signals', 
-        desc: 'Buyers actively researching', 
-        icon: <Activity size={20} className="text-[#843cff]" />, 
-        href: '/intent' 
-      },
-      { 
-        title: 'Data Freshness', 
-        desc: 'Real-time updates & verification', 
-        icon: <Clock size={20} className="text-[#843cff]" />, 
-        href: '/freshness' 
-      },
-      { 
-        title: 'Export Options', 
-        desc: 'CSV, API, and CRM integrations', 
-        icon: <Download size={20} className="text-[#843cff]" />, 
-        href: '/export' 
-      },
+        href: '/reviews' 
+      }
     ]
   ];
 
@@ -177,7 +147,7 @@ const Header = () => {
     [
       { 
         title: 'Case Studies', 
-        desc: 'See how companies win with our data', 
+        desc: 'See how companies win with Company Data', 
         icon: <BookOpen size={20} className="text-[#843cff]" />, 
         href: '/case-studies' 
       },
@@ -449,7 +419,7 @@ const Header = () => {
                 </AnimatePresence>
               </div>
 
-              {/* Our Data Dropdown - 2 Columns */}
+              {/* Company Dropdown - 2 Columns */}
               <div 
                 className="relative"
                 onMouseEnter={() => setActiveDropdown('ourData')}
@@ -465,7 +435,7 @@ const Header = () => {
                     }
                   `}
                 >
-                  Our data
+                  Company
                   <ChevronDown 
                     size={16} 
                     className={`transition-transform duration-200 ${
@@ -486,7 +456,7 @@ const Header = () => {
                       <div className="bg-white rounded-2xl border border-slate-100 shadow-2xl overflow-hidden">
                         <div className="px-6 py-3 bg-gradient-to-r from-[#667eea]/5 to-[#764ba2]/5 border-b border-slate-100">
                           <span className="text-xs font-semibold text-[#843cff] uppercase tracking-wider">
-                            Our Data
+                            Company
                           </span>
                         </div>
                         <div className="p-4 grid grid-cols-2 gap-3">
@@ -505,11 +475,6 @@ const Header = () => {
                                     <span className="text-sm font-semibold text-slate-900">
                                       {item.title}
                                     </span>
-                                    {item.badge && (
-                                      <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#37d4ff] text-white">
-                                        {item.badge}
-                                      </span>
-                                    )}
                                   </div>
                                   <p className="text-xs text-slate-500 mt-0.5 line-clamp-2">
                                     {item.desc}
@@ -870,7 +835,7 @@ const Header = () => {
                     onClick={() => setActiveDropdown(activeDropdown === 'platform' ? null : 'platform')}
                     className="w-full flex items-center justify-between py-4 text-left"
                   >
-                    <span className="text-lg font-bold text-slate-900">Platform</span>
+                    <span className="text-lg font-bold text-slate-900">Products</span>
                     <motion.div
                       animate={{ rotate: activeDropdown === 'platform' ? 180 : 0 }}
                     >
@@ -920,7 +885,7 @@ const Header = () => {
                   </AnimatePresence>
                 </motion.div>
 
-                {/* Our Data Dropdown - 2 Columns */}
+                {/* Company Dropdown - 2 Columns */}
                 <motion.div 
                   variants={fadeInUp}
                   className="border-b border-slate-50"
@@ -929,7 +894,7 @@ const Header = () => {
                     onClick={() => setActiveDropdown(activeDropdown === 'ourData' ? null : 'ourData')}
                     className="w-full flex items-center justify-between py-4 text-left"
                   >
-                    <span className="text-lg font-bold text-slate-900">Our Data</span>
+                    <span className="text-lg font-bold text-slate-900">Company</span>
                     <motion.div
                       animate={{ rotate: activeDropdown === 'ourData' ? 180 : 0 }}
                     >
@@ -965,11 +930,6 @@ const Header = () => {
                                   <div className="font-bold text-xs text-slate-900">{sub.title}</div>
                                   <div className="text-[10px] text-slate-500 leading-relaxed mt-0.5 line-clamp-2">{sub.desc}</div>
                                 </div>
-                                {sub.badge && (
-                                  <span className="text-[8px] font-bold px-1 py-0.5 rounded-full bg-[#37d4ff] text-white w-fit">
-                                    {sub.badge}
-                                  </span>
-                                )}
                               </motion.div>
                             </Link>
                           ))}
