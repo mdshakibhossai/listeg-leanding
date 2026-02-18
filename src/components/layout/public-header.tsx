@@ -69,18 +69,6 @@ const Header = () => {
         href: '/email-finder',
         badge: 'Popular'
       },
-      { 
-        title: 'Phone Finder', 
-        desc: 'Direct dials & mobile numbers for prospects', 
-        icon: <Phone size={20} className="text-[#843cff]" />, 
-        href: '/phone-finder' 
-      },
-      { 
-        title: 'Intent Data', 
-        desc: 'Reach buyers searching for your solution', 
-        icon: <Zap size={20} className="text-[#843cff]" />, 
-        href: '/intent-data' 
-      },
     ],
     // Column 2
     [
@@ -95,18 +83,6 @@ const Header = () => {
         desc: 'Send emails that land and convert', 
         icon: <Mail size={20} className="text-[#843cff]" />, 
         href: '/email-engine' 
-      },
-      { 
-        title: 'Cold Email Setup', 
-        desc: 'Quickly launch your cold email campaigns', 
-        icon: <Target size={20} className="text-[#843cff]" />, 
-        href: '/cold-email-setup' 
-      },
-      { 
-        title: 'API Access', 
-        desc: 'Integrate Company into your workflows', 
-        icon: <Code size={20} className="text-[#843cff]" />, 
-        href: '/api' 
       },
     ]
   ];
@@ -141,63 +117,6 @@ const Header = () => {
     ]
   ];
 
-  // Why LisTeg dropdown items - 2 columns
-  const whyItems = [
-    // Column 1
-    [
-      { 
-        title: 'Case Studies', 
-        desc: 'See how companies win with Company Data', 
-        icon: <BookOpen size={20} className="text-[#843cff]" />, 
-        href: '/case-studies' 
-      },
-      { 
-        title: 'Testimonials', 
-        desc: 'What our 40,000+ users say', 
-        icon: <Star size={20} className="text-[#843cff]" />, 
-        href: '/testimonials' 
-      },
-      { 
-        title: 'ROI Calculator', 
-        desc: 'Calculate your potential returns', 
-        icon: <PieChart size={20} className="text-[#843cff]" />, 
-        href: '/roi-calculator' 
-      },
-      { 
-        title: 'Integrations', 
-        desc: 'Connect with your favorite tools', 
-        icon: <Share2 size={20} className="text-[#843cff]" />, 
-        href: '/integrations' 
-      },
-    ],
-    // Column 2
-    [
-      { 
-        title: 'Reviews', 
-        desc: 'See what G2 & Capterra say', 
-        icon: <MessageCircle size={20} className="text-[#843cff]" />, 
-        href: '/reviews' 
-      },
-      { 
-        title: 'Comparison', 
-        desc: 'How we compare to competitors', 
-        icon: <BarChart size={20} className="text-[#843cff]" />, 
-        href: '/comparison' 
-      },
-      { 
-        title: 'Success Stories', 
-        desc: 'Real results from real customers', 
-        icon: <Award size={20} className="text-[#843cff]" />, 
-        href: '/success-stories' 
-      },
-      { 
-        title: 'Trust Center', 
-        desc: 'Security & compliance information', 
-        icon: <Shield size={20} className="text-[#843cff]" />, 
-        href: '/trust' 
-      },
-    ]
-  ];
 
   // Resources dropdown items - 2 columns
   const resourcesItems = [
@@ -369,11 +288,6 @@ const Header = () => {
                                     <span className="text-sm font-semibold text-slate-900">
                                       {item.title}
                                     </span>
-                                    {item.badge && (
-                                      <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#37d4ff] text-white">
-                                        {item.badge}
-                                      </span>
-                                    )}
                                   </div>
                                   <p className="text-xs text-slate-500 mt-0.5 line-clamp-2">
                                     {item.desc}
@@ -511,105 +425,6 @@ const Header = () => {
                             className="flex items-center justify-between text-xs font-medium text-[#843cff] hover:gap-2 transition-all"
                           >
                             <span>Explore all data features</span>
-                            <ArrowRight size={14} />
-                          </Link>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {/* Why LisTeg Dropdown - 2 Columns */}
-              <div 
-                className="relative"
-                onMouseEnter={() => setActiveDropdown('why')}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <button 
-                  className={`
-                    flex items-center gap-1.5 px-4 py-2 text-sm font-medium 
-                    transition-all rounded-full
-                    ${activeDropdown === 'why' 
-                      ? 'text-[#843cff] bg-purple-50' 
-                      : 'text-slate-700 hover:text-[#843cff] hover:bg-purple-50/50'
-                    }
-                  `}
-                >
-                  Why LisTeg
-                  <ChevronDown 
-                    size={16} 
-                    className={`transition-transform duration-200 ${
-                      activeDropdown === 'why' ? 'rotate-180' : ''
-                    }`} 
-                  />
-                </button>
-
-                <AnimatePresence>
-                  {activeDropdown === 'why' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.15 }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 pt-5 w-[600px]"
-                    >
-                      <div className="bg-white rounded-2xl border border-slate-100 shadow-2xl overflow-hidden">
-                        <div className="px-6 py-3 bg-gradient-to-r from-[#667eea]/5 to-[#764ba2]/5 border-b border-slate-100">
-                          <span className="text-xs font-semibold text-[#843cff] uppercase tracking-wider">
-                            Why Choose LisTeg
-                          </span>
-                        </div>
-                        <div className="p-4 grid grid-cols-2 gap-3">
-                          <div className="space-y-1">
-                            {whyItems[0].map((item, idx) => (
-                              <Link 
-                                key={idx} 
-                                href={item.href} 
-                                className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-all group"
-                              >
-                                <div className="mt-0.5 text-[#843cff] bg-purple-50 p-2 rounded-lg group-hover:scale-110 transition-transform">
-                                  {item.icon}
-                                </div>
-                                <div className="flex-1">
-                                  <span className="text-sm font-semibold text-slate-900">
-                                    {item.title}
-                                  </span>
-                                  <p className="text-xs text-slate-500 mt-0.5 line-clamp-2">
-                                    {item.desc}
-                                  </p>
-                                </div>
-                              </Link>
-                            ))}
-                          </div>
-                          <div className="space-y-1">
-                            {whyItems[1].map((item, idx) => (
-                              <Link 
-                                key={idx} 
-                                href={item.href} 
-                                className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-all group"
-                              >
-                                <div className="mt-0.5 text-[#843cff] bg-purple-50 p-2 rounded-lg group-hover:scale-110 transition-transform">
-                                  {item.icon}
-                                </div>
-                                <div className="flex-1">
-                                  <span className="text-sm font-semibold text-slate-900">
-                                    {item.title}
-                                  </span>
-                                  <p className="text-xs text-slate-500 mt-0.5 line-clamp-2">
-                                    {item.desc}
-                                  </p>
-                                </div>
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                        <div className="p-3 bg-slate-50 border-t border-slate-100">
-                          <Link 
-                            href="/why-listeg"
-                            className="flex items-center justify-between text-xs font-medium text-[#843cff] hover:gap-2 transition-all"
-                          >
-                            <span>See why customers choose us</span>
                             <ArrowRight size={14} />
                           </Link>
                         </div>
@@ -788,309 +603,226 @@ const Header = () => {
         </div>
       </header>
 
-      {/* MOBILE MENU - Full Screen Overlay with Slide Animation */}
+      {/* MOBILE MENU - Animation OFF */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div 
-            initial={{ x: "100%" }}
+          <motion.div
+            initial={false}
             animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", damping: 25 }}
+            exit={{ x: 0 }}
+            transition={{ duration: 0 }}
             className="lg:hidden fixed inset-0 z-[120] bg-white flex flex-col"
-            style={{ paddingTop: 'calc(20px)' }}
+            style={{ paddingTop: "20px" }}
           >
+            {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
-              <motion.div 
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                className="flex items-center gap-2 text-xl font-bold"
-              >
+              <div className="flex items-center gap-2 text-xl font-bold">
                 <div className="bg-purple-600 p-1.5 rounded-lg">
                   <div className="w-4 h-4 border-2 border-white rounded-sm" />
                 </div>
                 <span>LisTeg</span>
-              </motion.div>
-              <motion.button 
-                whileTap={{ scale: 0.9 }}
-                onClick={() => setIsMenuOpen(false)} 
+              </div>
+
+              <button
+                onClick={() => setIsMenuOpen(false)}
                 className="p-2"
               >
                 <X />
-              </motion.button>
+              </button>
             </div>
 
+            {/* Content */}
             <div className="flex-1 overflow-y-auto px-6 py-6 pb-20">
-              <motion.div 
-                initial="initial"
-                animate="animate"
-                variants={staggerContainer}
-                className="flex flex-col gap-2"
-              >
-                {/* Platform Dropdown - 2 Columns */}
-                <motion.div 
-                  variants={fadeInUp}
-                  className="border-b border-slate-50"
-                >
-                  <button 
-                    onClick={() => setActiveDropdown(activeDropdown === 'platform' ? null : 'platform')}
+              <div className="flex flex-col gap-2">
+
+                {/* PRODUCTS */}
+                <div className="border-b border-slate-50">
+                  <button
+                    onClick={() =>
+                      setActiveDropdown(
+                        activeDropdown === "platform" ? null : "platform"
+                      )
+                    }
                     className="w-full flex items-center justify-between py-4 text-left"
                   >
-                    <span className="text-lg font-bold text-slate-900">Products</span>
-                    <motion.div
-                      animate={{ rotate: activeDropdown === 'platform' ? 180 : 0 }}
-                    >
-                      <ChevronDown size={20} />
-                    </motion.div>
+                    <span className="text-lg font-bold text-slate-900">
+                      Products
+                    </span>
+                    <ChevronDown
+                      size={20}
+                      className={`transition-transform ${
+                        activeDropdown === "platform" ? "rotate-180" : ""
+                      }`}
+                    />
                   </button>
-                  
-                  <AnimatePresence>
-                    {activeDropdown === 'platform' && (
-                      <motion.div 
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        className="pb-4 overflow-hidden"
-                      >
-                        <div className="grid grid-cols-2 gap-3">
-                          {[...platformItems[0], ...platformItems[1]].map((sub, idx) => (
-                            <Link 
+
+                  {activeDropdown === "platform" && (
+                    <div className="pb-4">
+                      <div className="grid grid-cols-2 gap-3">
+                        {[...platformItems[0], ...platformItems[1]].map(
+                          (sub, idx) => (
+                            <Link
                               key={idx}
                               href={sub.href}
                               onClick={() => setIsMenuOpen(false)}
                             >
-                              <motion.div 
-                                initial={{ x: -20, opacity: 0 }}
-                                animate={{ x: 0, opacity: 1 }}
-                                transition={{ delay: idx * 0.05 }}
-                                className="bg-slate-50 p-3 rounded-xl flex flex-col gap-2"
-                              >
+                              <div className="bg-slate-50 p-3 rounded-xl flex flex-col gap-2">
                                 <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm text-purple-600">
-                                  {React.cloneElement(sub.icon as React.ReactElement)}
+                                  {sub.icon}
                                 </div>
                                 <div>
-                                  <div className="font-bold text-xs text-slate-900">{sub.title}</div>
-                                  <div className="text-[10px] text-slate-500 leading-relaxed mt-0.5 line-clamp-2">{sub.desc}</div>
+                                  <div className="font-bold text-xs text-slate-900">
+                                    {sub.title}
+                                  </div>
+                                  <div className="text-[10px] text-slate-500 leading-relaxed mt-0.5 line-clamp-2">
+                                    {sub.desc}
+                                  </div>
+                                </div>
+                              </div>
+                            </Link>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* COMPANY */}
+                <div className="border-b border-slate-50">
+                  <button
+                    onClick={() =>
+                      setActiveDropdown(
+                        activeDropdown === "ourData" ? null : "ourData"
+                      )
+                    }
+                    className="w-full flex items-center justify-between py-4 text-left"
+                  >
+                    <span className="text-lg font-bold text-slate-900">
+                      Company
+                    </span>
+                    <ChevronDown
+                      size={20}
+                      className={`transition-transform ${
+                        activeDropdown === "ourData" ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {activeDropdown === "ourData" && (
+                    <div className="pb-4">
+                      <div className="grid grid-cols-2 gap-3">
+                        {[...ourDataItems[0], ...ourDataItems[1]].map(
+                          (sub, idx) => (
+                            <Link
+                              key={idx}
+                              href={sub.href}
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              <div className="bg-slate-50 p-3 rounded-xl flex flex-col gap-2">
+                                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm text-purple-600">
+                                  {sub.icon}
+                                </div>
+                                <div>
+                                  <div className="font-bold text-xs text-slate-900">
+                                    {sub.title}
+                                  </div>
+                                  <div className="text-[10px] text-slate-500 leading-relaxed mt-0.5 line-clamp-2">
+                                    {sub.desc}
+                                  </div>
+                                </div>
+                              </div>
+                            </Link>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* RESOURCES */}
+                <div className="border-b border-slate-50">
+                  <button
+                    onClick={() =>
+                      setActiveDropdown(
+                        activeDropdown === "resources" ? null : "resources"
+                      )
+                    }
+                    className="w-full flex items-center justify-between py-4 text-left"
+                  >
+                    <span className="text-lg font-bold text-slate-900">
+                      Resources
+                    </span>
+                    <ChevronDown
+                      size={20}
+                      className={`transition-transform ${
+                        activeDropdown === "resources" ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {activeDropdown === "resources" && (
+                    <div className="pb-4">
+                      <div className="grid grid-cols-2 gap-3">
+                        {[...resourcesItems[0], ...resourcesItems[1]].map(
+                          (sub, idx) => (
+                            <Link
+                              key={idx}
+                              href={sub.href}
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              <div className="bg-slate-50 p-3 rounded-xl flex flex-col gap-2">
+                                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm text-purple-600">
+                                  {sub.icon}
+                                </div>
+                                <div>
+                                  <div className="font-bold text-xs text-slate-900">
+                                    {sub.title}
+                                  </div>
+                                  <div className="text-[10px] text-slate-500 leading-relaxed mt-0.5 line-clamp-2">
+                                    {sub.desc}
+                                  </div>
                                 </div>
                                 {sub.badge && (
                                   <span className="text-[8px] font-bold px-1 py-0.5 rounded-full bg-[#37d4ff] text-white w-fit">
                                     {sub.badge}
                                   </span>
                                 )}
-                              </motion.div>
+                              </div>
                             </Link>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
 
-                {/* Company Dropdown - 2 Columns */}
-                <motion.div 
-                  variants={fadeInUp}
-                  className="border-b border-slate-50"
-                >
-                  <button 
-                    onClick={() => setActiveDropdown(activeDropdown === 'ourData' ? null : 'ourData')}
-                    className="w-full flex items-center justify-between py-4 text-left"
-                  >
-                    <span className="text-lg font-bold text-slate-900">Company</span>
-                    <motion.div
-                      animate={{ rotate: activeDropdown === 'ourData' ? 180 : 0 }}
-                    >
-                      <ChevronDown size={20} />
-                    </motion.div>
-                  </button>
-                  
-                  <AnimatePresence>
-                    {activeDropdown === 'ourData' && (
-                      <motion.div 
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        className="pb-4 overflow-hidden"
-                      >
-                        <div className="grid grid-cols-2 gap-3">
-                          {[...ourDataItems[0], ...ourDataItems[1]].map((sub, idx) => (
-                            <Link 
-                              key={idx}
-                              href={sub.href}
-                              onClick={() => setIsMenuOpen(false)}
-                            >
-                              <motion.div 
-                                initial={{ x: -20, opacity: 0 }}
-                                animate={{ x: 0, opacity: 1 }}
-                                transition={{ delay: idx * 0.05 }}
-                                className="bg-slate-50 p-3 rounded-xl flex flex-col gap-2"
-                              >
-                                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm text-purple-600">
-                                  {React.cloneElement(sub.icon as React.ReactElement)}
-                                </div>
-                                <div>
-                                  <div className="font-bold text-xs text-slate-900">{sub.title}</div>
-                                  <div className="text-[10px] text-slate-500 leading-relaxed mt-0.5 line-clamp-2">{sub.desc}</div>
-                                </div>
-                              </motion.div>
-                            </Link>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-
-                {/* Why LisTeg Dropdown - 2 Columns */}
-                <motion.div 
-                  variants={fadeInUp}
-                  className="border-b border-slate-50"
-                >
-                  <button 
-                    onClick={() => setActiveDropdown(activeDropdown === 'why' ? null : 'why')}
-                    className="w-full flex items-center justify-between py-4 text-left"
-                  >
-                    <span className="text-lg font-bold text-slate-900">Why LisTeg</span>
-                    <motion.div
-                      animate={{ rotate: activeDropdown === 'why' ? 180 : 0 }}
-                    >
-                      <ChevronDown size={20} />
-                    </motion.div>
-                  </button>
-                  
-                  <AnimatePresence>
-                    {activeDropdown === 'why' && (
-                      <motion.div 
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        className="pb-4 overflow-hidden"
-                      >
-                        <div className="grid grid-cols-2 gap-3">
-                          {[...whyItems[0], ...whyItems[1]].map((sub, idx) => (
-                            <Link 
-                              key={idx}
-                              href={sub.href}
-                              onClick={() => setIsMenuOpen(false)}
-                            >
-                              <motion.div 
-                                initial={{ x: -20, opacity: 0 }}
-                                animate={{ x: 0, opacity: 1 }}
-                                transition={{ delay: idx * 0.05 }}
-                                className="bg-slate-50 p-3 rounded-xl flex flex-col gap-2"
-                              >
-                                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm text-purple-600">
-                                  {React.cloneElement(sub.icon as React.ReactElement)}
-                                </div>
-                                <div>
-                                  <div className="font-bold text-xs text-slate-900">{sub.title}</div>
-                                  <div className="text-[10px] text-slate-500 leading-relaxed mt-0.5 line-clamp-2">{sub.desc}</div>
-                                </div>
-                              </motion.div>
-                            </Link>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-
-                {/* Resources Dropdown - 2 Columns */}
-                <motion.div 
-                  variants={fadeInUp}
-                  className="border-b border-slate-50"
-                >
-                  <button 
-                    onClick={() => setActiveDropdown(activeDropdown === 'resources' ? null : 'resources')}
-                    className="w-full flex items-center justify-between py-4 text-left"
-                  >
-                    <span className="text-lg font-bold text-slate-900">Resources</span>
-                    <motion.div
-                      animate={{ rotate: activeDropdown === 'resources' ? 180 : 0 }}
-                    >
-                      <ChevronDown size={20} />
-                    </motion.div>
-                  </button>
-                  
-                  <AnimatePresence>
-                    {activeDropdown === 'resources' && (
-                      <motion.div 
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        className="pb-4 overflow-hidden"
-                      >
-                        <div className="grid grid-cols-2 gap-3">
-                          {[...resourcesItems[0], ...resourcesItems[1]].map((sub, idx) => (
-                            <Link 
-                              key={idx}
-                              href={sub.href}
-                              onClick={() => setIsMenuOpen(false)}
-                            >
-                              <motion.div 
-                                initial={{ x: -20, opacity: 0 }}
-                                animate={{ x: 0, opacity: 1 }}
-                                transition={{ delay: idx * 0.05 }}
-                                className="bg-slate-50 p-3 rounded-xl flex flex-col gap-2"
-                              >
-                                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm text-purple-600">
-                                  {React.cloneElement(sub.icon as React.ReactElement)}
-                                </div>
-                                <div>
-                                  <div className="font-bold text-xs text-slate-900">{sub.title}</div>
-                                  <div className="text-[10px] text-slate-500 leading-relaxed mt-0.5 line-clamp-2">{sub.desc}</div>
-                                </div>
-                                {sub.badge && (
-                                  <span className="text-[8px] font-bold px-1 py-0.5 rounded-full bg-[#37d4ff] text-white w-fit">
-                                    {sub.badge}
-                                  </span>
-                                )}
-                              </motion.div>
-                            </Link>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-
-                {/* Pricing Link */}
-                <motion.a 
-                  variants={fadeInUp}
-                  href="/pricing" 
+                {/* Pricing */}
+                <a
+                  href="/pricing"
                   className="text-lg font-bold text-slate-900 py-4 border-b border-slate-50 block"
                 >
                   Pricing
-                </motion.a>
-                
-                {/* Log In Button */}
-                <motion.button 
-                  variants={fadeInUp}
-                  className="text-left text-lg font-bold text-slate-900 py-4 border-b border-slate-50"
-                >
-                  Log In
-                </motion.button>
-                
-                {/* CTA Button */}
-                <motion.div 
-                  variants={fadeInUp}
-                  className="mt-10"
-                >
-                  <motion.button 
-                    whileTap={{ scale: 0.95 }}
-                    className="w-full bg-gradient-to-r from-[#00a6d3] to-[#8944ff] text-white py-4 rounded-full font-bold shadow-lg"
-                  >
-                    Get 100 Free Leads
-                  </motion.button>
-                </motion.div>
+                </a>
 
-                {/* User Count Badge - Mobile */}
-                <motion.div 
-                  variants={fadeInUp}
-                  className="mt-4 flex items-center justify-center gap-2 text-sm text-slate-600"
-                >
+                {/* Login */}
+                <button className="text-left text-lg font-bold text-slate-900 py-4 border-b border-slate-50">
+                  Log In
+                </button>
+
+                {/* CTA */}
+                <div className="mt-10">
+                  <button className="w-full bg-gradient-to-r from-[#00a6d3] to-[#8944ff] text-white py-4 rounded-full font-bold shadow-lg">
+                    Get 100 Free Leads
+                  </button>
+                </div>
+
+                {/* Users */}
+                <div className="mt-4 flex items-center justify-center gap-2 text-sm text-slate-600">
                   <Users size={16} className="text-[#843cff]" />
                   <span>Join 40,000+ users trusting LisTeg</span>
-                </motion.div>
-              </motion.div>
+                </div>
+
+              </div>
             </div>
           </motion.div>
         )}
